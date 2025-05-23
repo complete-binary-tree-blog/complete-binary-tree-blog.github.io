@@ -1,21 +1,11 @@
-# Welcome to MkDocs
+# 欢迎来到蒟蒻二叉树的博客主页！
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+- 框架：[MkDocs](https://github.com/mkdocs/mkdocs)
 
-## Commands
+- 主题：[Material](https://github.com/squidfunk/mkdocs-material)
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+- 搭建于：[GitHub Page](https://pages.github.com/)
 
-## Project layout
+- 鸣谢：[OI-wiki](https://github.com/OI-wiki/OI-wiki) ~~让我抄代码~~
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
-
-## LaTeX?
-
-$LaTeX$ $KaTeX$
+如果你也想要搭建一个类似的博客，可以看看我的[教程](教程/如何使用%20MkDocs%20搭建你的文章/index.md)

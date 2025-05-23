@@ -1,3 +1,4 @@
+"""
 MARKDOWN = {
     "extension_configs": {
         'markdown.extensions.codehilite': {'css_class': 'highlight'},
@@ -15,3 +16,4 @@ MARKDOWN = {
     },
     'output_format': 'html5',
 }
+"""
