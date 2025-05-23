@@ -1,31 +1,46 @@
 site_name: 蒟蒻二叉树的博客
 site_url: https://comlete-binary-tree-blog.github.io
+#site_url: http://10.110.169.28:8000
 nav:
-    - 主页: index.md
+  - 主页: 
+    - 概览: index.md
     - 关于: about.md
-    - OI:
-        - OI 简介: OI/index.md
-        - 常用网站: OI/websites.md
-        - C++ 语法:
-            - C++ 简介: OI/C++/index.md
-            - OI/C++/STL.md
-    - 教程: 
-        - 教程简介: 教程/index.md
-        - MkDocs:
-            - 教程/如何使用 MkDocs 搭建你的文章/index.md
-    - 日记:
-        - 日记简介: Journal/index.md
+    - Todo-list: Todo.md
+  - OI:
+    - OI 简介: OI/index.md
+    - 常用网站: OI/websites.md
+    - C++ 语法:
+      - C++ 简介: OI/C++/index.md
+      - OI/C++/STL.md
+    - Python 语法: []
+    - 算法:
+      - 算法简介: OI/Algorithm/index.md
+      - 数据结构:
+        - 数据结构简介: OI/Algorithm/DataStructure/index.md
+        - log 数据结构:
+          - log 数据结构简介: OI/Algorithm/DataStructure/LogStructure/index.md
+          - 线段树: OI/Algorithm/DataStructure/LogStructure/SegmentTree.md
+  - 教程: 
+    - 教程简介: 教程/index.md
+    - MkDocs:
+      - 教程/如何使用 MkDocs 搭建你的文章/index.md
+  - 日记:
+    - 日记简介: Journal/index.md
 
 
 theme:
     name: material
+    favicon: "favicon.ico"
+    icon:
+      logo: material/school
+    language: zh
     features:
         - navigation.instant
         - search-suggest
         - navigation.instant.progress
         - navigation.tabs
-        - navigation.footer
-    #- header.autohide
+        #- navigation.footer
+        - header.autohide
     palette:
         # Palette toggle for automatic mode
         - media: "(prefers-color-scheme)"
@@ -51,7 +66,9 @@ theme:
             name: Switch to system preference
 
           primary: black
-          accent: red
+          accent: cyan
+    features:
+      - content.code.copy
 
 extra:
   social:
@@ -59,6 +76,10 @@ extra:
       link: https://www.github.com/complete-binary-tree-blog
     - icon: fontawesome/brands/bilibili
       link: https://space.bilibili.com/3493146728073249
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 plugins: 
     - tags
@@ -68,22 +89,27 @@ hooks:
   - hooks/on_env.py
 
 markdown_extensions:
-  - md4mathjax
+  #- md4mathjax
   - document-offsets-injection
   - admonition
   - def_list
+  - attr_list
   - footnotes
   - meta
   - toc:
       permalink: ""
       slugify: !!python/name:pymdownx.slugs.uslugify
-  #- pymdownx.arithmatex:
-  #    generic: true
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
   - pymdownx.highlight:
       linenums: true
   - pymdownx.inlinehilite

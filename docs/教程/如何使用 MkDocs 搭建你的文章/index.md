@@ -1,14 +1,18 @@
 # 构建教程
 
+!!! Warning
+
+    本文主要针对 Windows 用户，Unix 用户（如 MacOS、Linux）的操作可能不一样。
+
 ## Step 1 下载
 
 首先你需要有一个 `python`。如果你没有，去[官网](https://python.org)下一个吧。
 
 下载以后，打开终端，运行 `pip install mkdocs`。
 
-> [!tips]
->
-> 如果你下载失败了，可以尝试开个梯子。
+??? tips
+
+    如果你下载失败了，可以尝试开个梯子。
 
 ## Step 2 新建项目
 
@@ -103,14 +107,86 @@ nav:
 
     把存储库命名为 `你的用户名.gihub.io`。
 
-3. 复制存储库 URL 以备复制。
+    ??? 图片操作示例 info
 
-    这个 URL 会以 `.git` 结尾。
+        首先来到你的个人主页，然后点击“+”-“New repository”。
+
+        ![github1](github1.png)
+
+        然后将**存储库名字**改成 `你的用户名.github.io` 的形式，并点击“Create repository”创建存储库。**注意，必须是你的用户名**。
+
+        ![github2](github2.png)
+
+        最后你就会到你这个存储库的主页。
+
+3. 复制存储库 `URL` 以备复制。
+
+    ??? 图片操作示例 info
+
+        书接上回，首先你要找到你的存储库的主页。
+
+        点击“Code”按钮的下拉箭头，然后点击复制图标。
+
+        ![github3](github3.png)
 
 ### Step 4.2 本地
 
 1. 随便找个有克隆功能的软件把这个存储库克隆下来。
 
-    你可能需要 `git`，下载一个吧。
+    ??? 你可能需要的软件 tips
+        
+        [Git](https://git-scm.com/downloads/win)
 
-2. 
+        [VS Code](https://code.visualstudio.com/) 或 [Github Desktop](https://desktop.github.com/download/)（前者有时候没办法上传，需要后者帮忙）
+
+    ???+ tips "操作步骤"
+
+        === "GitHub Desktop"
+
+            首先点击左上角 `File` 选项，点击 `Copy repository`。
+
+            选择 `URL` 选项，把你刚刚复制的储存库 `URL` 粘贴到第一个框，并在第二个框输入要保存到的位置。
+
+            ![download1](download1.png)
+
+            然后等待一会，即可下载完成。
+      
+        === "VS Code"
+
+            首先点击左侧边栏第三个按钮，然后点击“更改”旁边的“...”，点击“克隆”。
+
+            ![download2](download2.png)
+
+            然后上方会出现一个框，点击“从 GitHub 克隆”。
+
+            ![download3](download3.png)
+
+            然后输入你的仓库名称。（如果你有登录 GitHub，也可以只写在下面选择）
+
+            ![download4](download4.png)
+
+            最后选择保存文件夹，并等待它下载完成。
+
+2. 构建本地博客。
+
+    ???+ tips "如何操作"
+        
+        把 Step 2 中的控制台停掉。可以输入 <kbd>Ctrl</kbd>+<kbd>C</kbd> 来停止。
+
+        然后输入 `mkdocs build`。
+
+        待执行完成后，目录下会多一个 `site` 文件夹。
+
+        将里面的内容复制到刚刚克隆到的文件夹里（**注意**：`site` 文件夹不要复制！）
+
+3. 提交更改。
+
+    ???+ tips "如何上传"
+
+        === "Github Desktop"
+
+            上传比下载方便多了！
+
+            只需要在左下方填写更改标题、更改描述，然后点击 `commit`。
+
+            ![upload1](upload1.png)

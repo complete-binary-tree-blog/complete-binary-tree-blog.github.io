@@ -6,6 +6,12 @@
 
 它可以存储一对任何东西，即使前面和后面不同。
 
+### 构造
+
+```
+pair<int,int> _pair; //this is a pair
+```
+
 ## vector
 
 ## set(unordered_set)
