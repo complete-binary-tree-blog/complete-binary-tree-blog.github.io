@@ -1,5 +1,6 @@
 site_name: 蒟蒻二叉树的博客
 site_url: https://comlete-binary-tree-blog.github.io/
+use_directory_urls: true
 #site_url: http://10.110.169.28:8000
 nav:
   - 主页: 
