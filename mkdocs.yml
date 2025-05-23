@@ -52,7 +52,7 @@ theme:
         - navigation.instant.progress
         - navigation.tabs
         #- navigation.footer
-        - header.autohide
+        #- header.autohide
     palette:
         # Palette toggle for automatic mode
         - media: "(prefers-color-scheme)"
