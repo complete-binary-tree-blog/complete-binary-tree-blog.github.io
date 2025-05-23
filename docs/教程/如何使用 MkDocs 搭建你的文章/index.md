@@ -190,3 +190,19 @@ nav:
             只需要在左下方填写更改标题、更改描述，然后点击 `commit`。
 
             ![upload1](upload1.png)
+
+            接着，你可以点击右侧 `push origin` 直接上传到 GitHub，也可以攒几次 `commit` 再上传。**注意，在 `push origin 之前更改都只会保存在本地**！
+
+            ![upload2](upload2.png)
+
+            ??? Warning
+
+                请看清楚**你 `commit` 的是哪个项目**！~~不过 `commit` 是可以撤回的~~
+
+                更改当前项目：点击左上角，选择即可。
+
+                ![upload3](upload3.png)
+
+        === "VS Code"
+
+            还是刚刚那个界面，点击“提交”（“commit”），在弹出来的窗口点击“是”（“Yes”）。
