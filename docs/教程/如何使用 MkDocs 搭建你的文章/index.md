@@ -206,3 +206,9 @@ nav:
         === "VS Code"
 
             还是刚刚那个界面，点击“提交”（“commit”），在弹出来的窗口点击“是”（“Yes”）。
+
+            ![upload4](upload4.png)
+
+            然后输入更改标题，并点击右上角的勾。
+
+            ![upload5](upload5.png)
