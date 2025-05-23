@@ -212,3 +212,31 @@ nav:
             然后输入更改标题，并点击右上角的勾。
 
             ![upload5](upload5.png)
+
+            最后点击“同步更新”（“Sync Changes”）按钮上传。
+
+            ![upload6](upload6.png)
+
+            大功告成！
+
+## Step 5 设置你的 GitHub Page
+
+回到你的 GitHub 存储库主页。
+
+此时你会发现你的存储库多了一些内容。
+
+此时点击 `Settings`，点击左侧的 `Page`，并在右侧的 `Build and deployment/Source` 的下拉箭头中选中 `Deploy from a branch` 按钮。
+
+![settinggithubpage1](settinggithubpage1.png)
+
+此时浏览器会刷新。然后在它下面的 `Branch` 选中 `main/(root)`。
+
+![settinggithubpage2](settinggithubpage2.png)
+
+然后点击旁边的 `Save`（如果它没被禁用）。大功告成！
+
+此时你需要等一会（最多 $10$ 分钟）。当你看到 `Your site is live at https://你的用户名.github.io` 的时候，点击那个链接。
+
+![settinggithubpage3](settinggithubpage3.png)
+
+如果出现了你在本地运行 `mkdocs serve` 一样的页面，恭喜你，成功了！
