@@ -8,7 +8,7 @@ edit_uri_template: null # 编辑地址模板
 site_description: 蒟蒻二叉树的博客 # 站点描述
 site_author: comlete-binary-tree # 站点作者
 copyright: <a href="#__consent">修改 Cookie 设置</a><br/>Copyright &copy; 2025 Complete-binary-tree # 版权信息和 Cookie 设置
-remote_branch: main # GitHub Pages 远程分支名称
+remote_branch: page # GitHub Pages 远程分支名称
 remote_name: origin # 远程名称
 docs_dir: docs # 文档目录
 site_dir: site # 网站目录
