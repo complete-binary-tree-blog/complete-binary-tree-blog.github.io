@@ -1,4 +1,4 @@
-# 欢迎来到蒟蒻二叉树的博客主页！
+# 欢迎来到蒟蒻二叉树的文章主页！
 
 - 框架：[MkDocs](https://github.com/mkdocs/mkdocs)
 

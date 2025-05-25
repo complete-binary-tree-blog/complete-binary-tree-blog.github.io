@@ -20,6 +20,7 @@ nav:
     - 概览: index.md
     - 关于: about.md
     - Todo-list: Todo.md
+    - 友链: friends.md
   - OI:
     - OI 简介: OI/index.md
     - 常用网站: OI/websites.md
@@ -53,9 +54,9 @@ theme:
     language: zh # 语言
     features:
         - navigation.instant
-        - search-suggest
+        - search-suggest # 搜索建议
         - navigation.instant.progress
-        - navigation.tabs
+        - navigation.tabs # 顶部标签
         #- navigation.footer
         #- header.autohide
         - content.code.copy
@@ -91,6 +92,7 @@ theme:
     favicon: "favicon.ico"
     icon:
       logo: material/school
+    font: false # 避免从谷歌加载字体 
 
 extra:
   social:
@@ -102,6 +104,10 @@ extra:
 extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - css/extra.css
+  - https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.5.0/style.min.css # 设置字体（霞鹜文楷）【版本不能再更高了，会导致公式字体变小】
 
 plugins: 
     - tags:

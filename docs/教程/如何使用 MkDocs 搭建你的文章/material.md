@@ -81,3 +81,11 @@ theme:
   features:
     - navigation.tabs
 ```
+
+### 搜索
+
+搜索功能是一个插件，所以需要开启：
+
+```yaml
+
+```
