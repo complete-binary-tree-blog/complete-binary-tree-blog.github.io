@@ -12,7 +12,7 @@ remote_branch: page # GitHub Pages 远程分支名称
 remote_name: origin # 远程名称
 docs_dir: docs # 文档目录
 site_dir: site # 网站目录
-dev_addr: 0.0.0.0:8080 # 测试地址
+dev_addr: localhost:8080 # 测试地址
 
 # 文章目录
 nav:
@@ -40,6 +40,8 @@ nav:
       - index: 教程/如何使用 MkDocs 搭建你的文章/index.md
       - 构建教程: 教程/如何使用 MkDocs 搭建你的文章/mkdocs.md
       - material 主题: 教程/如何使用 MkDocs 搭建你的文章/material.md
+  - 发电:
+    - 这里有我的一个同学很喜欢的东西：）: funny/pumpkin.md
   - 博客: 
     - blog/index.md
     - 标签: blog/tags.md
@@ -47,6 +49,7 @@ nav:
 # 主题
 theme:
     name: material
+    custom_dir: overrides/partials
     language: zh # 语言
     features:
         - navigation.instant

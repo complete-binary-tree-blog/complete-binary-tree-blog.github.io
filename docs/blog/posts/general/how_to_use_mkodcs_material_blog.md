@@ -18,6 +18,7 @@ tags: # 标签
     - Mkdocs material
 authors: # 作者
     - cbt
+comments: true
 ---
 
 # MkDocs material 博客

@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # 构建教程
 
 !!! Warning
