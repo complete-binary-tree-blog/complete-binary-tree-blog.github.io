@@ -1,18 +1,18 @@
-site_name: 蒟蒻二叉树的博客 # 网站名称
+site_name: 蒟蒻二叉树的文章 # 网站名称
 site_url: https://comlete-binary-tree-blog.github.io/ # 网站地址
 use_directory_urls: true # 直接使用 URL
-repo_url: https://github.com/comlete-binary-tree-blog/comlete-binary-tree-blog.github.io # 仓库地址
+repo_url: https://github.com/complete-binary-tree-blog/complete-binary-tree-blog.github.io # 仓库地址
 repo_name: comlete-binary-tree-blog.github.io # 仓库名称
 edit_uri: edit/main/docs # 编辑地址
 edit_uri_template: null # 编辑地址模板
-site_description: 蒟蒻二叉树的博客 # 站点描述
+site_description: 蒟蒻二叉树的文章 # 站点描述
 site_author: comlete-binary-tree # 站点作者
 copyright: <a href="#__consent">修改 Cookie 设置</a><br/>Copyright &copy; 2025 Complete-binary-tree # 版权信息和 Cookie 设置
 remote_branch: page # GitHub Pages 远程分支名称
 remote_name: origin # 远程名称
 docs_dir: docs # 文档目录
 site_dir: site # 网站目录
-dev_addr: localhost:8080 # 测试地址
+dev_addr: 0.0.0.0:8080 # 测试地址
 
 # 文章目录
 nav:
@@ -37,10 +37,12 @@ nav:
   - 教程: 
     - 教程简介: 教程/index.md
     - MkDocs:
-      - 构建教程: 教程/如何使用 MkDocs 搭建你的文章/index.md
+      - index: 教程/如何使用 MkDocs 搭建你的文章/index.md
+      - 构建教程: 教程/如何使用 MkDocs 搭建你的文章/mkdocs.md
       - material 主题: 教程/如何使用 MkDocs 搭建你的文章/material.md
-  - 日记:
-    - 日记简介: Journal/index.md
+  - 博客: 
+    - blog/index.md
+    - 标签: blog/tags.md
 
 # 主题
 theme:
@@ -54,6 +56,9 @@ theme:
         #- navigation.footer
         #- header.autohide
         - content.code.copy
+        - content.action.edit
+        - content.action.view
+        - navigation.indexes
     palette:
         # Palette toggle for automatic mode
         - media: "(prefers-color-scheme)"
@@ -91,13 +96,18 @@ extra:
     - icon: fontawesome/brands/bilibili
       link: https://space.bilibili.com/3493146728073249
 
-#extra_javascript:
-  #- javascripts/mathjax.js
-  #- https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 plugins: 
-    - tags
+    - tags:
+        tags_file: blog/tags.md
     - search
+    - blog:
+        archive_date_format: YYYY # 日期格式
+        #categories_allowed: # 允许的标签
+        
 
 hooks:
   - hooks/on_env.py
