@@ -12,7 +12,7 @@ remote_branch: page # GitHub Pages 远程分支名称
 remote_name: origin # 远程名称
 docs_dir: docs # 文档目录
 site_dir: site # 网站目录
-dev_addr: localhost:8080 # 测试地址
+dev_addr: 0.0.0.0:8080 # 测试地址
 
 # 文章目录
 nav:
@@ -49,7 +49,7 @@ nav:
 # 主题
 theme:
     name: material
-    custom_dir: overrides/partials
+    custom_dir: overrides
     language: zh # 语言
     features:
         - navigation.instant
@@ -110,6 +110,7 @@ plugins:
     - blog:
         archive_date_format: YYYY # 日期格式
         #categories_allowed: # 允许的标签
+    - meta
         
 
 hooks:
