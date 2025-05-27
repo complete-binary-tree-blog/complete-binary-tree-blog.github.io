@@ -25,7 +25,7 @@ theme:
 
 保存并刷新页面，此时你发现你的博客变得有些不同了！
 
-## material 支持的功能
+## material 支持的文章功能
 
 只需在 `mkdocs.yml` 的 `theme:` 中加入一些字段，便可开启如页脚、亮暗色切换等功能。
 
@@ -35,8 +35,9 @@ theme:
 
 所以我们可以在 `theme:` 中加入一行：
 
-```yaml
+```yaml hl_lines="3"
 theme:
+  name: material
   language: zh # 设置为中文
 ```
 
@@ -76,16 +77,23 @@ theme:
 
 我们可以在 `theme:` 中加入以下字段来打开它：
 
-```yaml
+```yaml hl_lines="4 5"
 theme:
+  name: material
+  language: zh # 设置为中文
   features:
     - navigation.tabs
 ```
 
 ### 搜索
 
-搜索功能是一个插件，所以需要开启：
+搜索功能是一个插件，所以需要开启。
+
+在文件加入：
 
 ```yaml
-
+plugins:
+  - search
 ```
+
+你会发现网页右上角出现了一个搜索框。

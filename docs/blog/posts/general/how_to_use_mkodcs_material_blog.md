@@ -8,8 +8,8 @@ readtime: 1 # 阅读时间
 categories: 
     - 综合 # 板块
 links: # 相关链接
-    - Mkdocs 基础: 教程/如何使用 MkDocs 搭建你的文章/index.md
-    - Mkdocs-Material 基础: '教程/如何使用 MkDocs 搭建你的文章/material.md'
+    - Mkdocs 基础: 教程/如何使用 MkDocs 搭建你的文档/index.md
+    - Mkdocs-Material 基础: '教程/如何使用 MkDocs 搭建你的文档/material.md'
     - Mkdocs 博客文档: https://squidfunk.github.io/mkdocs-material/tutorials/blogs/basic/
 tags: # 标签
     - 教程

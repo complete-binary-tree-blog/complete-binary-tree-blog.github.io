@@ -5,7 +5,7 @@ repo_url: https://github.com/complete-binary-tree-blog/complete-binary-tree-blog
 repo_name: comlete-binary-tree-blog.github.io # 仓库名称
 edit_uri: edit/main/docs # 编辑地址
 edit_uri_template: null # 编辑地址模板
-site_description: 蒟蒻二叉树的文章 # 站点描述
+site_description: 蒟蒻二叉树的文档 # 站点描述
 site_author: comlete-binary-tree # 站点作者
 copyright: <a href="#__consent">修改 Cookie 设置</a><br/>Copyright &copy; 2025 Complete-binary-tree # 版权信息和 Cookie 设置
 remote_branch: page # GitHub Pages 远程分支名称
@@ -38,9 +38,9 @@ nav:
   - 教程: 
     - 教程简介: 教程/index.md
     - MkDocs:
-      - index: 教程/如何使用 MkDocs 搭建你的文章/index.md
-      - 构建教程: 教程/如何使用 MkDocs 搭建你的文章/mkdocs.md
-      - material 主题: 教程/如何使用 MkDocs 搭建你的文章/material.md
+      - index: 教程/如何使用 MkDocs 搭建你的文档/index.md
+      - 构建教程: 教程/如何使用 MkDocs 搭建你的文档/mkdocs.md
+      - material 主题: 教程/如何使用 MkDocs 搭建你的文档/material.md
   - 发电:
     - 这里有我的一个同学很喜欢的东西：）: funny/pumpkin.md
   - 博客: 
@@ -54,7 +54,7 @@ theme:
     language: zh # 语言
     features:
         - navigation.instant
-        - search-suggest # 搜索建议
+        - search.suggest # 搜索建议
         - navigation.instant.progress
         - navigation.tabs # 顶部标签
         #- navigation.footer
@@ -87,7 +87,7 @@ theme:
             icon: material/weather-sunny
             name: Switch to system preference
 
-          primary: black
+          #primary: black
           accent: cyan
     favicon: "favicon.ico"
     icon:

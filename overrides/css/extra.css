@@ -9,9 +9,9 @@
 
 /*亮色样式*/
 [data-md-color-scheme="default"] {
-    --md-primary-fg-color: rgba(240, 240, 240, 0.1);
-    --md-header-bg-color: rgba(240, 240, 240, 0.1);
-    --md-typeset-a-color: steelblue;
+    --md-primary-fg-color: rgba(240, 240, 240, 0.3);
+    --md-header-bg-color: rgba(240, 240, 240, 0.3);
+    --md-typeset-a-color: rgb(28, 78, 216);
     --md-footer-bg-color: #666666;
     --md-footer-bg-color--dark: #555555;
     --md-footer-fg-color: #ddd;
@@ -22,9 +22,9 @@
 
 /*暗色样式*/
 [data-md-color-scheme="slate"] {
-    --md-primary-fg-color: #777777;
-    --md-header-bg-color: #777777;
-    --md-typeset-a-color: royalblue;
+    --md-primary-fg-color: rgba(0,0,0,0.3);
+    --md-header-bg-color: rgba(0,0,0,0.3);
+    --md-typeset-a-color: rgb(40, 132, 207);
     --md-footer-bg-color: #101010;
     --md-footer-bg-color--dark: #101010;
     --md-code-hl-comment-color: rgba(17, 16, 17, 0.7);
