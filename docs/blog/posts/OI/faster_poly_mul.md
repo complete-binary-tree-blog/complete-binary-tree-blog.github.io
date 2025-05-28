@@ -89,3 +89,47 @@ c_i &= \sum_{j=0}^{n-1}y_j\omega^{-ij}\\
 综上，$a_i=\frac {c_i} n$，即 
 
 $$a_i = \frac1n\sum_{j=0}^{n-1}y_j\omega^{-ij}$$
+
+## 分治
+
+现在我们有了两个式子：
+
+$$y_i=\sum_{j=0}^{n-1}a_j\omega^{ij}$$
+
+$$a_i = \frac1n\sum_{j=0}^{n-1}y_j\omega^{-ij}$$
+
+然而朴素地计算它们时间复杂度是 $O(n^2)$ 的，无法接受。
+
+所以我们考虑奇偶分治。
+
+$$\begin{align*}
+f(x)&= (a_0+a_2x^2+a_4x^4+\dots)+(a_1x+a_3x^3+a_5x^5+\dots)\\
+    &= (a_0+a_2x^2+a_4x^4+\dots)+x(a_1+a_3x^2+a_5x^4+\dots)
+\end{align*}$$
+
+设 $f_1(x)=a_0+a_2x^1+a_4x^2+\dots$，$f_2(x)=a_1+a_3x^1+a_5x^2+\dots$。
+
+那么
+
+$$f(x)=f_1(x^2)+xf_2(x^2)$$
+
+由于进行了平方，所以进去之后只要算一半（单位根性质，$\{\omega_{n}^{2i}(i \in [1,n])\}=\{\omega_{\frac n2}^{i}(i \in [1,\frac n2])\}$，其中 $\omega_n=\mathrm{e}^{\mathrm{i}\frac{2\pi}{n}}$）。
+
+单位根还有另外一个性质：
+
+上式代入 $\omega^i$
+
+$$y_i=f_1(\omega^{2i})+\omega^{2i}f_2(\omega^{2i})$$
+
+代入 $\omega^{i+\frac n 2}$
+
+$$\begin{align*}
+y_{i+\frac n 2} &= f_1(\omega^{2(i+\frac n 2)})+\omega^{2i + \frac n 2}f_2(\omega^{2(i+\frac n 2)})\\
+    &= f_1(\omega^{2i})-\omega^{2i}f_2(\omega^{2i})
+\end{align*}$$
+
+可以发现这两个式子（几乎）完全一样。
+
+所以由于单位根性质，上式算了左半边可以算右半边。
+
+所以可以进行分治，时间复杂度 $O(n \log n)$。
