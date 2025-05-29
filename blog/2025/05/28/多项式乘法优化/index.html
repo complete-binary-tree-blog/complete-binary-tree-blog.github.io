@@ -1532,41 +1532,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#点值表示法" class="md-nav__link">
-    <span class="md-ellipsis">
-      点值表示法
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#单位根" class="md-nav__link">
-    <span class="md-ellipsis">
-      单位根
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#分治" class="md-nav__link">
-    <span class="md-ellipsis">
-      分治
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1725,37 +1690,59 @@
 
 <h1 data-original-document-end="9" data-original-document-start="0" id="多项式乘法优化">多项式乘法优化<a class="headerlink" href="#多项式乘法优化" title="Permanent link"></a></h1>
 <p data-original-document-end="56" data-original-document-start="11">如何借助复数和分治，将多项式乘法从 <span class="arithmatex">\(O(n^2)\)</span> 优化到 <span class="arithmatex">\(O(n \log n)\)</span>？</p>
-<p data-original-document-end="71" data-original-document-start="58"><!-- more -->
+<p data-original-document-end="77" data-original-document-start="58">本文将介绍两种算法：FFT，FNTT。</p>
+<p data-original-document-end="92" data-original-document-start="79"><!-- more -->
 </p>
-<h2 data-original-document-end="81" data-original-document-start="73" id="点值表示法">点值表示法<a class="headerlink" href="#点值表示法" title="Permanent link"></a></h2>
-<p data-original-document-end="172" data-original-document-start="83">我们知道，已知一些点对 <span class="arithmatex">\((x_i,y_i)\)</span>，其中 <span class="arithmatex">\(\forall i,j \in [1,n],x_i \not= x_j\)</span>，那么我们可以唯一确定一个 <span class="arithmatex">\(n-1\)</span> 次多项式。</p>
-<details class="question" data-original-document-end="240" data-original-document-start="174" open="open">
+<h1 data-original-document-end="99" data-original-document-start="94" id="fft">FFT<a class="headerlink" href="#fft" title="Permanent link"></a></h1>
+<p data-original-document-end="194" data-original-document-start="101"><strong>快速傅里叶变换</strong>（Fast Fourier Transform）是基于<strong>傅里叶变换</strong>（Fourier Transform），并使用<strong>复数</strong>优化的算法，可用于处理多项式乘法。</p>
+<h2 data-original-document-end="206" data-original-document-start="196" id="前置知识复数">前置知识：复数<a class="headerlink" href="#前置知识复数" title="Permanent link"></a></h2>
+<p data-original-document-end="266" data-original-document-start="208"><strong>虚数单位</strong>用 <span class="arithmatex">\(\mathrm i\)</span>（<strong>不能</strong>使用 <span class="arithmatex">\(i\)</span>）表示，满足 <span class="arithmatex">\(\mathrm i^2=-1\)</span>。</p>
+<details class="failure" data-original-document-end="322" data-original-document-start="268" open="open">
+<summary>错误理解</summary>
+<p><span class="arithmatex">\(\sqrt {-1}=\mathrm i\)</span> 是不严谨的。</p>
+</details>
+<p data-original-document-end="393" data-original-document-start="324"><strong>复数</strong>是一种有两个部分的数，包含实部和虚部，通常表示为 <span class="arithmatex">\(z=x+y\mathrm i\)</span>，其中 <span class="arithmatex">\(\mathrm i\)</span> 是虚数单位。</p>
+<p data-original-document-end="435" data-original-document-start="395"><strong>复数的模</strong>定义为 <span class="arithmatex">\(\sqrt{x^2+y^2}\)</span>，通常写作 <span class="arithmatex">\(|z|\)</span>。</p>
+<p data-original-document-end="514" data-original-document-start="437"><strong>单位根</strong>若复数 <span class="arithmatex">\(\omega\)</span> 满足 <span class="arithmatex">\(\omega^n=1\)</span>，则称 <span class="arithmatex">\(\omega\)</span> 是 <span class="arithmatex">\(n\)</span> 次单位根，可以用 <span class="arithmatex">\(\omega_n\)</span> 表示。</p>
+<p data-original-document-end="619" data-original-document-start="516">单位根还可以这样算出：<span class="arithmatex">\(\omega_n=\mathrm e^{\mathrm i \cdot \frac{2k\pi}{n}}\)</span>，其中 <span class="arithmatex">\(k \in [0,n)\)</span> 且 <span class="arithmatex">\(k \in \mathbb Z\)</span>。</p>
+<p data-original-document-end="670" data-original-document-start="621">当然，单位根还有一个性质：若 <span class="arithmatex">\(n\)</span> 为偶数，则 <span class="arithmatex">\(\omega^{\frac n 2}=-1\)</span>。</p>
+<p data-original-document-end="769" data-original-document-start="672"><strong>复数加法</strong>若 <span class="arithmatex">\(z_1=a_1+b_1\mathrm i\)</span>，<span class="arithmatex">\(z_2=a_2+b_2\mathrm i\)</span>，则 <span class="arithmatex">\(z_1+z_2=(a_1+a_2)+(b_1+b_2)\mathrm i\)</span>。</p>
+<p data-original-document-end="868" data-original-document-start="771"><strong>复数减法</strong>若 <span class="arithmatex">\(z_1=a_1+b_1\mathrm i\)</span>，<span class="arithmatex">\(z_2=a_2+b_2\mathrm i\)</span>，则 <span class="arithmatex">\(z_1-z_2=(a_1-a_2)+(b_1-b_2)\mathrm i\)</span>。</p>
+<p data-original-document-end="986" data-original-document-start="870"><strong>复数乘法</strong>若 <span class="arithmatex">\(z_1=a_1+b_1\mathrm i\)</span>，<span class="arithmatex">\(z_2=a_2+b_2\mathrm i\)</span>，则 <span class="arithmatex">\(z_1 \times z_2=(a_1a_2-b_1b_2)+(a_1b_2+b_1a_2)\mathrm i\)</span>。</p>
+<p data-original-document-end="1029" data-original-document-start="988">可以证明，复数加减法、复数乘法分别满足交换律、结合律，复数乘法与加减法满足分配律。</p>
+<h2 data-original-document-end="1042" data-original-document-start="1031" id="多项式点值表示法">多项式点值表示法<a class="headerlink" href="#多项式点值表示法" title="Permanent link"></a></h2>
+<p data-original-document-end="1137" data-original-document-start="1044">我们知道，已知一些点对 <span class="arithmatex">\((x_i,y_i)\)</span>，其中 <span class="arithmatex">\(\forall i,j \in [1,n],x_i \not= x_j\)</span>，那么我们可以<strong>唯一</strong>确定一个 <span class="arithmatex">\(n-1\)</span> 次多项式。</p>
+<details class="question" data-original-document-end="1205" data-original-document-start="1139" open="open">
 <summary>这不是插值吗？</summary>
 <p>还真是。</p>
 <p>因为 <span class="arithmatex">\(n\)</span> 个点可以确定一个 <span class="arithmatex">\(n-1\)</span> 次多项式。</p>
 </details>
-<p data-original-document-end="330" data-original-document-start="242">假设这两个要乘起来的多项式分别是 <span class="arithmatex">\(f(x)\)</span>、<span class="arithmatex">\(g(x)\)</span>，那么我们可以取一些值 <span class="arithmatex">\(x_i\)</span>，那么 <span class="arithmatex">\(f(x_i) \cdot g(x_i)\)</span> 肯定在他们俩乘起来的多项式上。</p>
-<p data-original-document-end="357" data-original-document-start="332">然而，我们要想办法如何快速实现求值和确定多项式呢？</p>
-<h2 data-original-document-end="365" data-original-document-start="359" id="单位根">单位根<a class="headerlink" href="#单位根" title="Permanent link"></a></h2>
-<p data-original-document-end="471" data-original-document-start="367">我们取 <span class="arithmatex">\(\omega=\mathrm{e}^{\mathrm{i} \cdot \frac{2\pi}{n}}\)</span>，取这个值的目的是为了 <span class="arithmatex">\(\omega^n=1\)</span>，即 <span class="arithmatex">\(\omega\)</span> 是 <span class="arithmatex">\(n\)</span> 次单位根。</p>
-<p data-original-document-end="512" data-original-document-start="473">???+ question 为什么不取其他使 <span class="arithmatex">\(\omega^n=1\)</span> 的值？</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>也可以，不过这样取可以更方便求单位根。
+<p data-original-document-end="1303" data-original-document-start="1207">假设这两个要乘起来的多项式分别是 <span class="arithmatex">\(f(x)\)</span>、<span class="arithmatex">\(g(x)\)</span>，那么我们可以取一些值 <span class="arithmatex">\(x_i\)</span>，则 <span class="arithmatex">\((x_i,f(x_i) \cdot g(x_i))\)</span> 这个点肯定在他们俩乘起来的多项式上。</p>
+<p data-original-document-end="1330" data-original-document-start="1305">然而，我们要想办法如何快速实现求值和确定多项式呢？</p>
+<h2 data-original-document-end="1340" data-original-document-start="1332" id="借助单位根">借助单位根<a class="headerlink" href="#借助单位根" title="Permanent link"></a></h2>
+<p data-original-document-end="1446" data-original-document-start="1342">我们取 <span class="arithmatex">\(\omega=\mathrm{e}^{\mathrm{i} \cdot \frac{2\pi}{n}}\)</span>，取这个值的目的是为了 <span class="arithmatex">\(\omega^n=1\)</span>，即 <span class="arithmatex">\(\omega\)</span> 是 <span class="arithmatex">\(n\)</span> 次单位根。</p>
+<p data-original-document-end="1487" data-original-document-start="1448">???+ question 为什么不取其他使 <span class="arithmatex">\(\omega^n=1\)</span> 的值？</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>也可以，不过这样取可以更方便求单位根。
+
+而且有一些单位根可能会存在整数 $k&lt;n$，使得 $\omega_n^k=1$，这样子 $\{\omega_n^0,\omega_n^1,\omega_n^2,\dots,\omega_n^n\}$ 中会**有重复**，就不满足点值表示的要求（点值表示中 $x$ **不可重复**）。
 </code></pre></div></td></tr></table></div>
-<p data-original-document-end="579" data-original-document-start="539">我们可以求出 <span class="arithmatex">\(n\)</span> 对点对 <span class="arithmatex">\((\omega^i,f(\omega^i))\)</span>。</p>
-<p data-original-document-end="595" data-original-document-start="581">那么怎么知道点对求多项式呢？</p>
-<p data-original-document-end="658" data-original-document-start="597">设有点对 <span class="arithmatex">\(\{(\omega^i,y_i)\}\)</span>，多项式为 <span class="arithmatex">\(f(x)=\sum_{i=0}^{n-1}a_ix^i\)</span>。</p>
-<p data-original-document-end="683" data-original-document-start="660">直接求太困难了，我们构造一个序列 <span class="arithmatex">\(c\)</span> 满足</p>
-<div class="arithmatex" data-original-document-end="726" data-original-document-start="685">\[c_i = \sum_{j=0}^{n-1}y_j\omega^{-ij}\]</div>
-<p data-original-document-end="833" data-original-document-start="728">也就是说分别把点 <span class="arithmatex">\([\omega^{-0i},\omega^{-i},\omega^{-2i},\dots,\omega^{-(n-1)i}]\)</span> 代入求多项式 <span class="arithmatex">\(\sum_{i=0}^ny_ix^i\)</span> 的值。</p>
-<p data-original-document-end="881" data-original-document-start="835">考虑把 <span class="arithmatex">\(y_j=\sum_{k=0}^{n-1}a_k\omega^{jk}\)</span> 代入式子：</p>
-<div class="arithmatex" data-original-document-end="1153" data-original-document-start="883">\[\begin{align*}
+<p data-original-document-end="1707" data-original-document-start="1666">我们很容易求出 <span class="arithmatex">\(n\)</span> 对点对 <span class="arithmatex">\((\omega^i,f(\omega^i))\)</span>。</p>
+<p data-original-document-end="1723" data-original-document-start="1709">那么怎么知道点对求多项式呢？</p>
+<p data-original-document-end="1786" data-original-document-start="1725">设有点对 <span class="arithmatex">\(\{(\omega^i,y_i)\}\)</span>，多项式为 <span class="arithmatex">\(f(x)=\sum_{i=0}^{n-1}a_ix^i\)</span>。</p>
+<p data-original-document-end="1830" data-original-document-start="1788">直接求太困难了，<sub>~伟大的逆傅里叶变换告诉我们</sub>~我们可以构造一个序列 <span class="arithmatex">\(c\)</span> 满足</p>
+<div class="arithmatex" data-original-document-end="1873" data-original-document-start="1832">\[c_i = \sum_{j=0}^{n-1}y_j\omega^{-ij}\]</div>
+<p data-original-document-end="1979" data-original-document-start="1875">也就是分别把点 <span class="arithmatex">\([\omega^{-0i},\omega^{-i},\omega^{-2i},\dots,\omega^{-(n-1)i}]\)</span> 代入求多项式 <span class="arithmatex">\(\sum_{i=0}^ny_ix^i\)</span> 的值。</p>
+<p data-original-document-end="2027" data-original-document-start="1981">考虑把 <span class="arithmatex">\(y_j=\sum_{k=0}^{n-1}a_k\omega^{jk}\)</span> 代入式子：</p>
+<div class="arithmatex" data-original-document-end="2299" data-original-document-start="2029">\[\begin{align*}
 c_i &amp;= \sum_{j=0}^{n-1}y_j\omega^{-ij}\\
     &amp;= \sum_{j=0}^{n-1}\left(\sum_{k=0}^{n-1}a_k\omega^{jk}\right)\omega^{-ij}\\
     &amp;= \sum_{k=0}^{n-1}\sum_{j=0}^{n-1}a_k\omega^{jk-ij}\\
     &amp;= \sum_{k=0}^{n-1}a_k\sum_{j=0}^{n-1}\omega^{j(k-i)}
 \end{align*}\]</div>
-<p data-original-document-end="1213" data-original-document-start="1155">我们考虑 <span class="arithmatex">\(\sum_{k=0}^{n-1}a_k\sum_{j=0}^{n-1}\omega^{j(k-i)}\)</span>：</p>
-<ol data-original-document-end="1686" data-original-document-start="1215">
+<p data-original-document-end="2359" data-original-document-start="2301">我们考虑 <span class="arithmatex">\(\sum_{k=0}^{n-1}a_k\sum_{j=0}^{n-1}\omega^{j(k-i)}\)</span>：</p>
+<ol data-original-document-end="2832" data-original-document-start="2361">
 <li>
 <p>如果 <span class="arithmatex">\(k=i\)</span></p>
 <p>那么后面的 <span class="arithmatex">\(\omega^{j(k-i)}\)</span> 项全都变成了 <span class="arithmatex">\(\omega^{0j}\)</span>，也就是 <span class="arithmatex">\(1\)</span>。</p>
@@ -1769,33 +1756,178 @@ c_i &amp;= \sum_{j=0}^{n-1}y_j\omega^{-ij}\\
 <p>所以 <span class="arithmatex">\(a_k\sum_{j=0}^{n-1}\omega^{j(k-i)}=0\)</span>。</p>
 </li>
 </ol>
-<p data-original-document-end="1713" data-original-document-start="1688">综上，<span class="arithmatex">\(a_i=\frac {c_i} n\)</span>，即 </p>
-<div class="arithmatex" data-original-document-end="1763" data-original-document-start="1715">\[a_i = \frac1n\sum_{j=0}^{n-1}y_j\omega^{-ij}\]</div>
-<h2 data-original-document-end="1770" data-original-document-start="1765" id="分治">分治<a class="headerlink" href="#分治" title="Permanent link"></a></h2>
-<p data-original-document-end="1783" data-original-document-start="1772">现在我们有了两个式子：</p>
-<div class="arithmatex" data-original-document-end="1823" data-original-document-start="1785">\[y_i=\sum_{j=0}^{n-1}a_j\omega^{ij}\]</div>
+<p data-original-document-end="2859" data-original-document-start="2834">综上，<span class="arithmatex">\(a_i=\frac {c_i} n\)</span>，即 </p>
+<div class="arithmatex" data-original-document-end="2909" data-original-document-start="2861">\[a_i = \frac1n\sum_{j=0}^{n-1}y_j\omega^{-ij}\]</div>
+<p data-original-document-end="2988" data-original-document-start="2911">这个式子和刚刚求多项式的式子差不多（只不过 <span class="arithmatex">\(\omega^{ij}\)</span> 变成了 <span class="arithmatex">\(\omega^{-ij}\)</span>），所以我们可以利用类似求多项式值的方法求出。</p>
+<h2 data-original-document-end="2997" data-original-document-start="2990" id="分治优化">分治优化<a class="headerlink" href="#分治优化" title="Permanent link"></a></h2>
+<p data-original-document-end="3034" data-original-document-start="2999">不过到目前算法复杂度还是只能达到 <span class="arithmatex">\(O(n^2)\)</span>，我们考虑分治优化。</p>
+<p data-original-document-end="3047" data-original-document-start="3036">现在我们有了两个式子：</p>
+<div class="arithmatex" data-original-document-end="3087" data-original-document-start="3049">\[y_i=\sum_{j=0}^{n-1}a_j\omega^{ij}\]</div>
 <div class="arithmatex">\[a_i = \frac1n\sum_{j=0}^{n-1}y_j\omega^{-ij}\]</div>
-<p data-original-document-end="1907" data-original-document-start="1875">然而朴素地计算它们时间复杂度是 <span class="arithmatex">\(O(n^2)\)</span> 的，无法接受。</p>
-<p data-original-document-end="1920" data-original-document-start="1909">所以我们考虑奇偶分治。</p>
+<p data-original-document-end="3171" data-original-document-start="3139">然而朴素地计算它们时间复杂度是 <span class="arithmatex">\(O(n^2)\)</span> 的，无法接受。</p>
+<p data-original-document-end="3214" data-original-document-start="3173">所以我们考虑奇偶分治。（先把 <span class="arithmatex">\(\omega^i\)</span> 替换成 <span class="arithmatex">\(x\)</span> 不然看的难受）</p>
 <div class="arithmatex">\[\begin{align*}
 f(x)&amp;= (a_0+a_2x^2+a_4x^4+\dots)+(a_1x+a_3x^3+a_5x^5+\dots)\\
     &amp;= (a_0+a_2x^2+a_4x^4+\dots)+x(a_1+a_3x^2+a_5x^4+\dots)
 \end{align*}\]</div>
-<p data-original-document-end="2145" data-original-document-start="2077">设 <span class="arithmatex">\(f_1(x)=a_0+a_2x^1+a_4x^2+\dots\)</span>，<span class="arithmatex">\(f_2(x)=a_1+a_3x^1+a_5x^2+\dots\)</span>。</p>
-<p data-original-document-end="2149" data-original-document-start="2147">那么</p>
-<div class="arithmatex" data-original-document-end="2178" data-original-document-start="2151">\[f(x)=f_1(x^2)+xf_2(x^2)\]</div>
-<p data-original-document-end="2340" data-original-document-start="2180">由于进行了平方，所以进去之后只要算一半（单位根性质，<span class="arithmatex">\(\{\omega_{n}^{2i}(i \in [1,n])\}=\{\omega_{\frac n2}^{i}(i \in [1,\frac n2])\}\)</span>，其中 <span class="arithmatex">\(\omega_n=\mathrm{e}^{\mathrm{i}\frac{2\pi}{n}}\)</span>）。</p>
-<p data-original-document-end="2354" data-original-document-start="2342">单位根还有另外一个性质：</p>
-<p data-original-document-end="2371" data-original-document-start="2356">上式代入 <span class="arithmatex">\(\omega^i\)</span></p>
-<div class="arithmatex" data-original-document-end="2425" data-original-document-start="2373">\[y_i=f_1(\omega^{2i})+\omega^{2i}f_2(\omega^{2i})\]</div>
-<p data-original-document-end="2452" data-original-document-start="2427">代入 <span class="arithmatex">\(\omega^{i+\frac n 2}\)</span></p>
+<p data-original-document-end="3439" data-original-document-start="3371">设 <span class="arithmatex">\(f_1(x)=a_0+a_2x^1+a_4x^2+\dots\)</span>，<span class="arithmatex">\(f_2(x)=a_1+a_3x^1+a_5x^2+\dots\)</span>。</p>
+<p data-original-document-end="3443" data-original-document-start="3441">那么</p>
+<div class="arithmatex" data-original-document-end="3472" data-original-document-start="3445">\[f(x)=f_1(x^2)+xf_2(x^2)\]</div>
+<p data-original-document-end="3634" data-original-document-start="3474">由于进行了平方，所以进去之后只要算一半（单位根性质，<span class="arithmatex">\(\{\omega_{n}^{2i}(i \in [1,n])\}=\{\omega_{\frac n2}^{i}(i \in [1,\frac n2])\}\)</span>，其中 <span class="arithmatex">\(\omega_n=\mathrm{e}^{\mathrm{i}\frac{2\pi}{n}}\)</span>）。</p>
+<p data-original-document-end="3648" data-original-document-start="3636">单位根还有另外一个性质：</p>
+<p data-original-document-end="3665" data-original-document-start="3650">上式代入 <span class="arithmatex">\(\omega^i\)</span></p>
+<div class="arithmatex" data-original-document-end="3718" data-original-document-start="3667">\[y_i=f_1(\omega^{2i})+\omega^{i}f_2(\omega^{2i})\]</div>
+<p data-original-document-end="3745" data-original-document-start="3720">代入 <span class="arithmatex">\(\omega^{i+\frac n 2}\)</span></p>
 <div class="arithmatex">\[\begin{align*}
-y_{i+\frac n 2} &amp;= f_1(\omega^{2(i+\frac n 2)})+\omega^{2i + \frac n 2}f_2(\omega^{2(i+\frac n 2)})\\
-    &amp;= f_1(\omega^{2i})-\omega^{2i}f_2(\omega^{2i})
+y_{i+\frac n 2} &amp;= f_1(\omega^{2(i+\frac n 2)})+\omega^{i + \frac n 2}f_2(\omega^{2(i+\frac n 2)})\\
+    &amp;= f_1(\omega^{2i})-\omega^{i}f_2(\omega^{2i})
 \end{align*}\]</div>
-<p data-original-document-end="2659" data-original-document-start="2641">可以发现这两个式子（几乎）完全一样。</p>
-<p data-original-document-end="2685" data-original-document-start="2661">所以由于单位根性质，上式算了左半边可以算右半边。</p>
-<p data-original-document-end="2716" data-original-document-start="2687">所以可以进行分治，时间复杂度 <span class="arithmatex">\(O(n \log n)\)</span>。</p>
+<p data-original-document-end="3950" data-original-document-start="3932">可以发现这两个式子（几乎）完全一样。</p>
+<p data-original-document-end="4057" data-original-document-start="3952">所以由于单位根性质，只要算 <span class="arithmatex">\(y_0,y_1,\dots,y_{\frac n 2-1}\)</span> 就能 <span class="arithmatex">\(O(1)\)</span> 得出 <span class="arithmatex">\(y_{\frac n 2},y_{\frac n 2+1},\dots,y_{n-1}\)</span>。</p>
+<p data-original-document-end="4068" data-original-document-start="4059">所以可以进行分治。</p>
+<p data-original-document-end="4118" data-original-document-start="4070">时间复杂度 <span class="arithmatex">\(T(n)=O(n)+2T(\frac n 2)\)</span>，即 <span class="arithmatex">\(O(n \log n)\)</span>。</p>
+<h2 data-original-document-end="4127" data-original-document-start="4120" id="核心代码">核心代码<a class="headerlink" href="#核心代码" title="Permanent link"></a></h2>
+<p data-original-document-end="4956" data-original-document-start="4129"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">comp</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">pi</span><span class="o">=</span><span class="n">acos</span><span class="p">(</span><span class="mf">-1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// cos(pi)=-1</span>
+
+<span class="c1">/// @brief 聚 DFT、IDFT 于一体的 FFT 函数。</span>
+<span class="c1">/// @param n 需要求的多项式长度。</span>
+<span class="c1">/// @param a 需要求的多项式数组。结果在此处返回。</span>
+<span class="c1">/// @param type 1 表示 DFT，-1 表示 IDFT</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">FastFastTLE</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">comp</span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">type</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="c1">// 常数项直接返回</span>
+
+<span class="w">    </span><span class="n">comp</span><span class="o">*</span><span class="n">a1</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">comp</span><span class="p">[</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">],</span><span class="o">*</span><span class="n">a2</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">comp</span><span class="p">[</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">];</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="c1">// 奇偶分类</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span><span class="n">a2</span><span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span>
+
+<span class="w">    </span><span class="c1">// 递归分治</span>
+<span class="w">    </span><span class="n">FastFastTLE</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">);</span>
+<span class="w">    </span><span class="n">FastFastTLE</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// wmul 就是单位根，w 表示 wmul^i</span>
+<span class="w">    </span><span class="n">comp</span><span class="w"> </span><span class="n">wmul</span><span class="o">=</span><span class="n">comp</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="n">n</span><span class="p">),</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">type</span><span class="p">),</span><span class="w"> </span><span class="c1">//这里也可以使用 exp 函数，效果一样</span>
+<span class="w">         </span><span class="n">w</span><span class="o">=</span><span class="n">comp</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<span class="w">        </span><span class="n">comp</span><span class="w"> </span><span class="n">tmp</span><span class="o">=</span><span class="n">w</span><span class="o">*</span><span class="n">a2</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="c1">// 复数计算比较慢，提前计算节省时间</span>
+<span class="w">        </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">tmp</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">)]</span><span class="o">=</span><span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">tmp</span><span class="p">;</span><span class="w"> </span><span class="c1">// 式子</span>
+<span class="w">        </span><span class="n">w</span><span class="o">*=</span><span class="n">wmul</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">a1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">a2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<h1 data-original-document-end="4964" data-original-document-start="4958" id="fntt">FNTT<a class="headerlink" href="#fntt" title="Permanent link"></a></h1>
+<p data-original-document-end="5082" data-original-document-start="4966"><strong>快速数论变换</strong>（Fast Number-Theoretic Transform）是一种基于<strong>数论变换</strong>（Number-Theoretic Transform），并利用<strong>原根</strong>进行优化的算法，可以处理带模数的多项式乘法。</p>
+<p data-original-document-end="5111" data-original-document-start="5084">在不引起混淆的语境下，FNTT 也可以简称为 NTT。</p>
+<h2 data-original-document-end="5123" data-original-document-start="5113" id="前置知识原根">前置知识：原根<a class="headerlink" href="#前置知识原根" title="Permanent link"></a></h2>
+<p data-original-document-end="5160" data-original-document-start="5125">在模 <span class="arithmatex">\(p\)</span> 意义下，<strong>原根</strong> <span class="arithmatex">\(g\)</span> 是一个满足以下条件的整数：</p>
+<ol data-original-document-end="5279" data-original-document-start="5162">
+<li>
+<p><span class="arithmatex">\(g^{\varphi(p)} \equiv 1 \pmod p\)</span>；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\forall i \in [1,\varphi(p)),g^{i}\not\equiv 1\pmod p\)</span>；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(g \in [0,p)\)</span>。</p>
+</li>
+</ol>
+<p data-original-document-end="5321" data-original-document-start="5281">在 <span class="arithmatex">\(p\)</span> 为奇质数时，<span class="arithmatex">\(\varphi (p)=p-1\)</span>，此时它具有以下性质：</p>
+<p>如果我们设 <span class="arithmatex">\(n\)</span> 为偶数，<span class="arithmatex">\(\omega=g^{\frac {p-1}n}\)</span>，那么有：</p>
+<ol data-original-document-end="5510" data-original-document-start="5369">
+<li>
+<p><span class="arithmatex">\(\omega^{n}=g^{p-1}=1\)</span>；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\omega^{0},\omega^1,\omega^2,\dots,\omega^{n-1}\)</span> 两两不同（原根第 <span class="arithmatex">\(2\)</span> 条）；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\omega^{\frac n 2} \equiv -1 \pmod p\)</span>。</p>
+</li>
+</ol>
+<details class="info" data-original-document-end="5797" data-original-document-start="5512" open="open">
+<summary><span class="arithmatex">\(3\)</span> 的证明</summary>
+<p>由于 <span class="arithmatex">\(g^{p-1}\equiv 1\pmod p\)</span>，即 <span class="arithmatex">\(g^{2 \cdot \frac{p-1}2}-1 \equiv 0\pmod p\)</span>。</p>
+<p>因式分解，<span class="arithmatex">\((g^{\frac{p-1}2}+1)(g^{\frac{p-1}2}-1) \equiv 0\pmod p\)</span>。</p>
+<p>由于 <span class="arithmatex">\(g^{\frac{p-1}2} \not \equiv 1\)</span>，所以 <span class="arithmatex">\(g^{\frac{p-1}2} \equiv -1\)</span>。</p>
+<p>所以 <span class="arithmatex">\(\omega^{\frac{n}2}\equiv -1\pmod p\)</span>。</p>
+</details>
+<p data-original-document-end="5845" data-original-document-start="5799">根据上面三个性质，我们发现：在模 <span class="arithmatex">\(p\)</span> 意义下，<strong>原根可以代替 FFT 中的单位根</strong>。</p>
+<p data-original-document-end="5883" data-original-document-start="5847">于是我们可以直接套上 FFT，并把单位根替换成原根，然后再加上模数即可。</p>
+<div class="admonition warning" data-original-document-end="6203" data-original-document-start="5885">
+<p class="admonition-title">注意</p>
+<p>NTT 对于模数<strong>有要求</strong>。</p>
+<p>对于一个模数 <span class="arithmatex">\(p\)</span>，它可以处理的最长序列是 <span class="arithmatex">\(2^k\)</span>，其中 <span class="arithmatex">\(k\)</span> 为满足 <span class="arithmatex">\(2^k \mid p\)</span> 的最大整数。</p>
+<p>如果 <span class="arithmatex">\(2^k\)</span> 太大了会导致 <span class="arithmatex">\(\frac{p-1}{2^k}\)</span> 不是整数，就做不了 NTT 了。</p>
+<p>像常见模数 <span class="arithmatex">\(998344353=7 \times 17 \times 2^{23}\)</span>，所以模 <span class="arithmatex">\(998244353\)</span> 最大可以做 <span class="arithmatex">\(n=2^{23}\)</span> 的序列。</p>
+<p>对于任意模数 NTT，请见 <a href="https://www.luogu.com.cn/problem/P4245">任意模数多项式乘法</a>。</p>
+</div>
+<h2 id="核心代码_1">核心代码<a class="headerlink" href="#核心代码_1" title="Permanent link"></a></h2>
+<p data-original-document-end="6775" data-original-document-start="6214"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">ll</span>
+
+<span class="c1">/// @brief NTT 函数。</span>
+<span class="c1">/// @param n 需要求的多项式长度。</span>
+<span class="c1">/// @param a 需要求的多项式数组。结果在此处返回。</span>
+<span class="c1">/// @param type 1 表示 DFT，-1 表示 IDFT</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">Nearly_Totally_TLE</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="n">ll</span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">type</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ll</span><span class="o">*</span><span class="n">a1</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">ll</span><span class="p">[</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">],</span><span class="o">*</span><span class="n">a2</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">ll</span><span class="p">[</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">];</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span><span class="n">a2</span><span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="k">else</span><span class="w"> </span><span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="n">Nearly_Totally_TLE</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">type</span><span class="p">),</span><span class="n">Nearly_Totally_TLE</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">type</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="n">wmul</span><span class="o">=</span><span class="p">(</span><span class="n">type</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">?</span><span class="n">W</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">:</span><span class="n">invW</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">w</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="o">*</span><span class="n">a2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="p">(</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">)]</span><span class="o">=</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">w</span><span class="o">*</span><span class="n">a2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">%</span><span class="n">mod</span><span class="p">,</span><span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="o">*</span><span class="n">wmul</span><span class="o">%</span><span class="n">mod</span><span class="p">;</span>
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">a1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">a2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
 
 
 
