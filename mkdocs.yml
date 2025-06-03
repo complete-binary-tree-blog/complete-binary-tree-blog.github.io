@@ -35,12 +35,18 @@ nav:
         - log 数据结构:
           - log 数据结构简介: OI/Algorithm/DataStructure/LogStructure/index.md
           - 线段树: OI/Algorithm/DataStructure/LogStructure/SegmentTree.md
+  - 文化课:
+    - whk/index.md
+    - 数学:
+      - whk/math/index.md
+      - 2025-06: whk/math/202506.md
   - 教程: 
     - 教程简介: 教程/index.md
     - MkDocs:
       - index: 教程/如何使用 MkDocs 搭建你的文档/index.md
       - 构建教程: 教程/如何使用 MkDocs 搭建你的文档/mkdocs.md
       - material 主题: 教程/如何使用 MkDocs 搭建你的文档/material.md
+      - Python markdown 扩展(含 Latex): 教程/如何使用 MkDocs 搭建你的文档/extra-markdown.md
   - 发电:
     - 这里有我的一个同学很喜欢的东西：）: funny/pumpkin.md
   - 博客: 

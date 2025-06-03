@@ -3,7 +3,7 @@ date:
     created: 2025-05-28
 #draft: true # 草稿
 pin: false # 置顶
-readtime: 15 # 阅读时间
+readtime: 30 # 阅读时间
 categories: 
     - OI # 板块
 links: # 相关链接
@@ -27,11 +27,11 @@ authors: # 作者
 
 <!-- more -->
 
-# FFT
+## FFT
 
 **快速傅里叶变换**（Fast Fourier Transform）是基于**傅里叶变换**（Fourier Transform），并使用**复数**优化的算法，可用于处理多项式乘法。
 
-## 前置知识：复数
+### 前置知识：复数
 
 **虚数单位**用 $\mathrm i$（**不能**使用 $i$）表示，满足 $\mathrm i^2=-1$。
 
@@ -57,7 +57,7 @@ authors: # 作者
 
 可以证明，复数加减法、复数乘法分别满足交换律、结合律，复数乘法与加减法满足分配律。
 
-## 多项式点值表示法
+### 多项式点值表示法
 
 我们知道，已知一些点对 $(x_i,y_i)$，其中 $\forall i,j \in [1,n],x_i \not= x_j$，那么我们可以**唯一**确定一个 $n-1$ 次多项式。
 
@@ -71,11 +71,11 @@ authors: # 作者
 
 然而，我们要想办法如何快速实现求值和确定多项式呢？
 
-## 借助单位根
+### 借助单位根
 
 我们取 $\omega=\mathrm{e}^{\mathrm{i} \cdot \frac{2\pi}{n}}$，取这个值的目的是为了 $\omega^n=1$，即 $\omega$ 是 $n$ 次单位根。
 
-???+ question 为什么不取其他使 $\omega^n=1$ 的值？
+???+ question "为什么不取其他使 $\omega^n=1$ 的值？"
 
     也可以，不过这样取可以更方便求单位根。
     
@@ -126,7 +126,7 @@ $$a_i = \frac1n\sum_{j=0}^{n-1}y_j\omega^{-ij}$$
 
 这个式子和刚刚求多项式的式子差不多（只不过 $\omega^{ij}$ 变成了 $\omega^{-ij}$），所以我们可以利用类似求多项式值的方法求出。
 
-## 分治优化
+### 分治优化
 
 不过到目前算法复杂度还是只能达到 $O(n^2)$，我们考虑分治优化。
 
@@ -174,7 +174,7 @@ y_{i+\frac n 2} &= f_1(\omega^{2(i+\frac n 2)})+\omega^{i + \frac n 2}f_2(\omega
 
 时间复杂度 $T(n)=O(n)+2T(\frac n 2)$，即 $O(n \log n)$。
 
-## 核心代码
+### 核心代码
 
 ```cpp
 typedef complex<double> comp;
@@ -210,13 +210,13 @@ void FastFastTLE(int n, comp*a, int type){
 }
 ```
 
-# FNTT
+## FNTT
 
 **快速数论变换**（Fast Number-Theoretic Transform）是一种基于**数论变换**（Number-Theoretic Transform），并利用**原根**进行优化的算法，可以处理带模数的多项式乘法。
 
 在不引起混淆的语境下，FNTT 也可以简称为 NTT。
 
-## 前置知识：原根
+### 前置知识：原根
 
 在模 $p$ 意义下，**原根** $g$ 是一个满足以下条件的整数：
 
@@ -262,23 +262,37 @@ void FastFastTLE(int n, comp*a, int type){
 
     对于任意模数 NTT，请见 [任意模数多项式乘法](https://www.luogu.com.cn/problem/P4245)。
 
-## 核心代码
+### 核心代码
 
 ```cpp
-typedef long long ll
+typedef long long ll;
+ll W[(1<<21)+5],invW[(1<<21)+5]; // （需要提前预处理）这两个数组在下标为 n 的时候分别表示 n 次单位根、n 次单位根的逆元。
 
 /// @brief NTT 函数。
 /// @param n 需要求的多项式长度。
 /// @param a 需要求的多项式数组。结果在此处返回。
-/// @param type 1 表示 DFT，-1 表示 IDFT
+/// @param type 1 表示 DFT，-1 表示 IDFT。
+///
+/// 基本架构和 FFT 一样，只不过 complex 变成了 long long，还有需要预处理一下单位根（现场求 O(logn) 对常数影响极大）。
 void Nearly_Totally_TLE(int n,ll* a,int type){
     if(n==1)return;
     ll*a1=new ll[n>>1],*a2=new ll[n>>1];
     for(int i=0;i<n;++i)if(i&1)a2[i/2]=a[i];else a1[i/2]=a[i];
     Nearly_Totally_TLE(n>>1,a1,type),Nearly_Totally_TLE(n>>1,a2,type);
-    ll wmul=(type+1)?W[n]:invW[n],w=1;
+    ll wmul=(type+1)?W[n]:invW[n],w=1; // 单位根 comp -> ll
     for(int i=0;i<(n>>1);++i)a[i]=(a1[i]+w*a2[i])%mod,a[i+(n>>1)]=(a1[i]-w*a2[i])%mod,w=w*wmul%mod;
     delete[] a1;
     delete[] a2;
 }
 ```
+
+
+## 例题
+
+### [P3803 【模板】多项式乘法（FFT）](https://www.luogu.com.cn/problem/P3803)| [P1919 【模板】高精度乘法 | A*B Problem 升级版](https://www.luogu.com.cn/problem/P1919)
+
+本质相同的两道模板题。
+
+只需对两个序列分别做一遍 DFT，然后把点值相乘，最后再做一遍 IDFT 即可。使用 FFT、NTT 实现均可。
+
+需要注意的是，最后答案**要除以做 DFT/IDFT 的长度**，而且**做 DFT/IDFT 的长度要一样且是 $2$ 的整数次幂**。还有就是做高精度乘法的时候要记得**把数组反向**。如果 TLE 了可以考虑一些常数优化。
