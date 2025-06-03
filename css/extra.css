@@ -44,3 +44,7 @@
     /* Safari */
     background-color: var(--md-header-bg-color);
 }
+
+/* Code block / tab in details */
+/*details > summary + .highlight, details > summary + .tabbed-set { margin: 0 -0.6rem !important; }*/
+/*details > summary + .highlight > .highlighttable { margin: 0 !important; }*/
