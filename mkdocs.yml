@@ -39,7 +39,10 @@ nav:
     - whk/index.md
     - 数学:
       - whk/math/index.md
-      - 2025-06: whk/math/202506.md
+      - 较难题目:
+        - whk/math/problems/index.md
+        - 2025-06: whk/math/problems/202506.md
+      - 思维/方法: []
   - 教程: 
     - 教程简介: 教程/index.md
     - MkDocs:
