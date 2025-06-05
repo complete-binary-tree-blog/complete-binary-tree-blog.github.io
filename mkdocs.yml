@@ -21,6 +21,7 @@ nav:
     - 关于: about.md
     - Todo-list: Todo.md
     - 友链: friends.md
+    - 公告: announcement.md
   - OI:
     - OI 简介: OI/index.md
     - 常用网站: OI/websites.md
