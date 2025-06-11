@@ -44,6 +44,11 @@ nav:
         - whk/math/problems/index.md
         - 2025-06: whk/math/problems/202506.md
       - 思维/方法: []
+    - 物理:
+      - whk/physics/index.md
+      - 题目: 
+        - whk/physics/problems/index.md
+        - 2025/06: whk/physics/problems/2025/202506.md
   - 教程: 
     - 教程简介: 教程/index.md
     - MkDocs:
