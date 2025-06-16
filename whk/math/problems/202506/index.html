@@ -12,7 +12,7 @@
         <meta name="author" content="comlete-binary-tree">
       
       
-        <link rel="canonical" href="https://comlete-binary-tree-blog.github.io/whk/math/problems/202506/">
+        <link rel="canonical" href="https://complete-binary-tree-blog.github.io/whk/math/problems/202506/">
       
       
         <link rel="prev" href="../">
@@ -2275,13 +2275,30 @@
 <p data-original-document-end="349" data-original-document-start="217">(1) 证明：<span class="arithmatex">\(\displaystyle \sum_{i=1}^n(x_i-\overline x)=0;\)</span><br />
 (2) 证明：<span class="arithmatex">\(y=f(c)\)</span> 的最小值是 <span class="arithmatex">\(f(\overline x);\)</span><br />
 (3) 求当 <span class="arithmatex">\(y=g(a)\)</span> 取最小值时，<span class="arithmatex">\(a\)</span> 的取值<span class="arithmatex">\(.\)</span></p>
-<details class="success" data-original-document-end="535" data-original-document-start="351">
+<details class="info" data-original-document-end="702" data-original-document-start="351">
+<summary>难度</summary>
+<p>综合难度：<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span></p>
+<ul>
+<li>
+<p>计算：<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span></p>
+</li>
+<li>
+<p>思维：<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span></p>
+</li>
+</ul>
+</details>
+<details class="success" data-original-document-end="986" data-original-document-start="705">
 <summary>答案</summary>
 <p>(1) 略<span class="arithmatex">\(;\)</span><br />
 (2) 略<span class="arithmatex">\(;\)</span><br />
-(3) <span class="arithmatex">\(\displaystyle a=\left\{\begin{matrix}x_{\frac{n+1}2},&amp;(2\nmid n)\\ [x_{\frac n2},x_{\frac n2+1}],&amp;(2\mid n)\end{matrix}\right.\)</span></p>
+(3) <span class="arithmatex">\(\displaystyle a\in\left\{\begin{matrix}\{x_{\frac{n+1}2}\},&amp;(2\nmid n)\\ [x_{\frac n2},x_{\frac n2+1}],&amp;(2\mid n)\end{matrix}\right..\)</span></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>月考提供的的标准答案在 (3) 并不正确。</p>
+<p>因为题目问的是 <span class="arithmatex">\(a\)</span> 的取值，应当是一个集合。</p>
+</div>
 </details>
-<details class="note" data-original-document-end="740" data-original-document-start="537">
+<details class="note" data-original-document-end="1191" data-original-document-start="988">
 <summary>(1) 过程</summary>
 <p>由</p>
 <div class="arithmatex">\[\overline x=\frac{\displaystyle \sum_{i=1}^nx_i}n\]</div>
@@ -2290,7 +2307,7 @@
 <p>所以</p>
 <div class="arithmatex">\[\sum_{i=1}^n(x_i-\overline x)=0.\]</div>
 </details>
-<details class="note" data-original-document-end="1418" data-original-document-start="742">
+<details class="note" data-original-document-end="1869" data-original-document-start="1193">
 <summary>(2) 过程</summary>
 <div class="arithmatex">\[\begin{align*}
 f(c)&amp;=\sum_{i=1}^n(x_i-c)^2\\
@@ -2310,31 +2327,58 @@ f(c)&amp;=\sum_{i=1}^n(x_i-c)^2\\
 <p>所以 </p>
 <div class="arithmatex">\[f(c)=\sum_{i=1}^nx_i^2-nc(2\overline x-c)\ge\sum_{i=1}^nx_i^2-n\overline x^2\]</div>
 <hr />
-<p>由于 <span class="arithmatex">\(n\overline x^2&gt;0\)</span>，所以 <span class="arithmatex">\(\displaystyle \sum_{i=1}^nx_i^2-n\overline x^2\le\sum_{i=1}^nx_i^2\)</span>，所以当 <span class="arithmatex">\(c=\overline x\)</span> 时取得最大值<span class="arithmatex">\(.\)</span></p>
+<p>由于 <span class="arithmatex">\(n\overline x^2&gt;0\)</span>，所以 <span class="arithmatex">\(\displaystyle \sum_{i=1}^nx_i^2-n\overline x^2\le\sum_{i=1}^nx_i^2\)</span>，所以当 <span class="arithmatex">\(c=\overline x\)</span> 时取得最小值<span class="arithmatex">\(.\)</span></p>
 </details>
-<details class="note" data-original-document-end="1604" data-original-document-start="1549">
+<details class="note" data-original-document-end="3026" data-original-document-start="2000">
 <summary>(3) 过程</summary>
-<p>分类讨论：</p>
-<p><span class="arithmatex">\(\mathrm I.\)</span>当 <span class="arithmatex">\(n\)</span> 为奇数</p>
+<p>两两配对：</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(|a-x_1|+|a-x_n|\ge x_n-x_1\)</span>，当且仅当 <span class="arithmatex">\(a \in [x_1,x_n]\)</span> 成立；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(|a-x_2|+|a-x_{n-1}|\ge x_{n-1}-x_2\)</span>，当且仅当 <span class="arithmatex">\(a \in [x_2,x_{n-1}]\)</span> 成立；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\dots\)</span></p>
+</li>
+<li>
+<p>（到最后要分讨：）</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\mathrm I.2 \mid n\)</span></p>
+<p><span class="arithmatex">\(|a-x_{\frac n2}|+|a-x_{\frac n2+1}| \ge x_{\frac n2+1}-x_{\frac n2}\)</span>，当且仅当 <span class="arithmatex">\(a \in [x_{\frac n2+1},x_{\frac n2}]\)</span> 成立<span class="arithmatex">\(.\)</span></p>
+<p>所以 <span class="arithmatex">\(g(a)\)</span> 在 <span class="arithmatex">\(a \in [x_{\frac n2+1},x_{\frac n2}]\)</span> 取得最小值 <span class="arithmatex">\(x_n-x_1+x_{n-1}-x_2+\dots+x_{\frac n2+1}-x_{\frac n2}.\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathrm {II}.2 \nmid n\)</span></p>
+<p><span class="arithmatex">\(|a-x_{\frac {n-1}2}|+|a-x_{\frac {n+3}2}| \ge x_{\frac {n+3}2}-x_{\frac {n-1}2}\)</span>，当且仅当 <span class="arithmatex">\(a \in [x_{\frac {n+3}2},x_{\frac {n-1}2}]\)</span> 成立；</p>
+<p><span class="arithmatex">\(|a-x_{\frac{n+1}2}| \ge 0\)</span>，当且仅当 <span class="arithmatex">\(a=x_{\frac{n+1}2}\)</span> 成立。</p>
+<p>所以 <span class="arithmatex">\(g(a)\)</span> 在 <span class="arithmatex">\(a=x_{\frac{n+1}2}\)</span> 取得最小值 <span class="arithmatex">\(x_n-x_1+x_{n-1}-x_2+\dots+x_{\frac {n+3}2}-x_{\frac {n-1}2}.\)</span></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>综上，<span class="arithmatex">\(g(a)\)</span> 取得最小值时 <span class="arithmatex">\(\displaystyle a\in\left\{\begin{matrix}\{x_{\frac{n+1}2}\},&amp;(2\nmid n)\\ [x_{\frac n2},x_{\frac n2+1}],&amp;(2\mid n)\end{matrix}\right..\)</span></p>
 </details>
-<h2 data-original-document-end="1631" data-original-document-start="1618" id="20250610">2025.06.10<a class="headerlink" href="#20250610" title="Permanent link"></a></h2>
-<p data-original-document-end="1771" data-original-document-start="1633">【物理作业改】有一条直河宽 <span class="arithmatex">\(500\text m\)</span>，某处水流速度 <span class="arithmatex">\(v\)</span> 与<strong>离该处最近岸边距离</strong> <span class="arithmatex">\(x\)</span> 关系为 <span class="arithmatex">\(v=\frac2{250}x\)</span>。有一条小船在静水中速度为 <span class="arithmatex">\(4\text{m/s}\)</span>，如果想让这艘船<strong>过河路程最小</strong>，那么需要多少时间小船才能过河？</p>
-<div class="admonition warning" data-original-document-end="1818" data-original-document-start="1773">
+<h2 data-original-document-end="3053" data-original-document-start="3040" id="20250610">2025.06.10<a class="headerlink" href="#20250610" title="Permanent link"></a></h2>
+<p data-original-document-end="3193" data-original-document-start="3055">【物理作业改】有一条直河宽 <span class="arithmatex">\(500\text m\)</span>，某处水流速度 <span class="arithmatex">\(v\)</span> 与<strong>离该处最近岸边距离</strong> <span class="arithmatex">\(x\)</span> 关系为 <span class="arithmatex">\(v=\frac2{250}x\)</span>。有一条小船在静水中速度为 <span class="arithmatex">\(4\text{m/s}\)</span>，如果想让这艘船<strong>过河路程最小</strong>，那么需要多少时间小船才能过河？</p>
+<div class="admonition warning" data-original-document-end="3240" data-original-document-start="3195">
 <p class="admonition-title">注意</p>
 <p>该题目所用知识点<strong>可能超出高中知识范围</strong>。</p>
 </div>
-<details class="info" data-original-document-end="2037" data-original-document-start="1820">
+<details class="info" data-original-document-end="3459" data-original-document-start="3257">
 <summary>难度</summary>
 <p>综合难度：<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span></p>
 <ul>
 <li>计算：<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span></li>
 </ul>
 </details>
-<details class="success" data-original-document-end="2088" data-original-document-start="2057">
+<details class="success" data-original-document-end="3510" data-original-document-start="3479">
 <summary>答案</summary>
 <div class="arithmatex">\[\frac{125\pi}{3}\text s\]</div>
 </details>
-<details class="note" data-original-document-end="3399" data-original-document-start="2090">
+<details class="note" data-original-document-end="4821" data-original-document-start="3512">
 <summary>过程</summary>
 <p>首先由于<strong>过河路径最短</strong>，我们需要<strong>过河路径与河岸垂直</strong>，即<strong>速度与河岸垂直</strong>。</p>
 <p>画出速度合成图：</p>
@@ -2361,9 +2405,9 @@ f(c)&amp;=\sum_{i=1}^n(x_i-c)^2\\
 <p>得证<span class="arithmatex">\(.\)</span></p>
 </details>
 </details>
-<h2 data-original-document-end="3429" data-original-document-start="3416" id="20250604">2025.06.04<a class="headerlink" href="#20250604" title="Permanent link"></a></h2>
-<h3 data-original-document-end="3438" data-original-document-start="3431" id="改编题">改编题<a class="headerlink" href="#改编题" title="Permanent link"></a></h3>
-<details class="quote" data-original-document-end="5654" data-original-document-start="3440">
+<h2 data-original-document-end="4851" data-original-document-start="4838" id="20250604">2025.06.04<a class="headerlink" href="#20250604" title="Permanent link"></a></h2>
+<h3 data-original-document-end="4860" data-original-document-start="4853" id="改编题">改编题<a class="headerlink" href="#改编题" title="Permanent link"></a></h3>
+<details class="quote" data-original-document-end="7076" data-original-document-start="4862">
 <summary>暂存</summary>
 <p>【1 改】抛掷一枚质地均匀的硬币，如果连续抛掷 <span class="arithmatex">\(\text{1 000}\)</span> 次，<strong>已知其中 <span class="arithmatex">\(999\)</span> 次正面朝上</strong>，那么剩下 <span class="arithmatex">\(1\)</span> 次正面朝上的概率为____<span class="arithmatex">\(.\)</span></p>
 <details class="info">
@@ -2443,10 +2487,10 @@ f(c)&amp;=\sum_{i=1}^n(x_i-c)^2\\
 </div>
 </details>
 </details>
-<h2 data-original-document-end="5669" data-original-document-start="5656" id="20250603">2025.06.03<a class="headerlink" href="#20250603" title="Permanent link"></a></h2>
-<h3 data-original-document-end="5679" data-original-document-start="5671" id="自我挑战">自我挑战<a class="headerlink" href="#自我挑战" title="Permanent link"></a></h3>
-<p data-original-document-end="5779" data-original-document-start="5681">已知数据 <span class="arithmatex">\(x_1,x_2,x_3,\dots,x_{10}\)</span> 的平均数是 <span class="arithmatex">\(6\)</span>，标准差是 <span class="arithmatex">\(\sqrt2\)</span>，则数据 <span class="arithmatex">\(x_1,x_2,\dots,x_5\)</span> 的平均数的取值范围是_____<span class="arithmatex">\(.\)</span></p>
-<details class="info" data-original-document-end="6109" data-original-document-start="6000">
+<h2 data-original-document-end="7091" data-original-document-start="7078" id="20250603">2025.06.03<a class="headerlink" href="#20250603" title="Permanent link"></a></h2>
+<h3 data-original-document-end="7101" data-original-document-start="7093" id="自我挑战">自我挑战<a class="headerlink" href="#自我挑战" title="Permanent link"></a></h3>
+<p data-original-document-end="7201" data-original-document-start="7103">已知数据 <span class="arithmatex">\(x_1,x_2,x_3,\dots,x_{10}\)</span> 的平均数是 <span class="arithmatex">\(6\)</span>，标准差是 <span class="arithmatex">\(\sqrt2\)</span>，则数据 <span class="arithmatex">\(x_1,x_2,\dots,x_5\)</span> 的平均数的取值范围是_____<span class="arithmatex">\(.\)</span></p>
+<details class="info" data-original-document-end="7531" data-original-document-start="7422">
 <summary>难度</summary>
 <p>综合难度：<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span></p>
 <ul>
@@ -2458,11 +2502,11 @@ f(c)&amp;=\sum_{i=1}^n(x_i-c)^2\\
 </li>
 </ul>
 </details>
-<details class="success" data-original-document-end="6156" data-original-document-start="6129">
+<details class="success" data-original-document-end="7578" data-original-document-start="7551">
 <summary>答案</summary>
 <div class="arithmatex">\[[6-\sqrt2,6+\sqrt2]\]</div>
 </details>
-<details class="note" data-original-document-end="7871" data-original-document-start="6173">
+<details class="note" data-original-document-end="9293" data-original-document-start="7595">
 <summary>过程</summary>
 <p>设 <span class="arithmatex">\(x_1,x_2,\dots,x_5\)</span> 的平均值为 <span class="arithmatex">\(\overline y\)</span>、方差为 <span class="arithmatex">\(s_y^2\)</span>，<span class="arithmatex">\(x_6,x_7,\dots,x_{10}\)</span> 的平均值为 <span class="arithmatex">\(\overline z\)</span>、方差为 <span class="arithmatex">\(s_z^2\)</span>，那么有</p>
 <div class="arithmatex">\[\begin{align*}
@@ -2506,8 +2550,8 @@ s_y^2+s_z^2&amp;=-2\overline y^2+24\overline y-68
 <p>证毕<span class="arithmatex">\(.\)</span></p>
 </details>
 <h3 id="改编题_1">改编题<a class="headerlink" href="#改编题_1" title="Permanent link"></a></h3>
-<p data-original-document-end="7972" data-original-document-start="7882">【例 <span class="arithmatex">\(3\)</span> 改】袋子里有四个小球，分别标号 <span class="arithmatex">\(1,2,3,4\)</span>，放回随机抽取小球直到小球 <span class="arithmatex">\(3,4\)</span> 都被抽到过，求期望抽取次数（平均要抽多少次才能让 <span class="arithmatex">\(3,4\)</span> 都被抽到过）。</p>
-<details class="info" data-original-document-end="8326" data-original-document-start="7989">
+<p data-original-document-end="9394" data-original-document-start="9304">【例 <span class="arithmatex">\(3\)</span> 改】袋子里有四个小球，分别标号 <span class="arithmatex">\(1,2,3,4\)</span>，放回随机抽取小球直到小球 <span class="arithmatex">\(3,4\)</span> 都被抽到过，求期望抽取次数（平均要抽多少次才能让 <span class="arithmatex">\(3,4\)</span> 都被抽到过）。</p>
+<details class="info" data-original-document-end="9748" data-original-document-start="9631">
 <summary>难度</summary>
 <p>综合难度：<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 15.39-3.76 2.27.99-4.28-3.32-2.88 4.38-.37L12 6.09l1.71 4.04 4.38.37-3.32 2.88.99 4.28M22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.45 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03z"/></svg></span></p>
 <ul>
@@ -2519,11 +2563,11 @@ s_y^2+s_z^2&amp;=-2\overline y^2+24\overline y-68
 </li>
 </ul>
 </details>
-<details class="success" data-original-document-end="8355" data-original-document-start="8346">
+<details class="success" data-original-document-end="9777" data-original-document-start="9768">
 <summary>答案</summary>
 <div class="arithmatex">\[6\]</div>
 </details>
-<details class="note" data-original-document-end="10653" data-original-document-start="8372">
+<details class="note" data-original-document-end="12075" data-original-document-start="9794">
 <summary>过程</summary>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">方法一</label><label for="__tabbed_2_2">方法二</label></div>
 <div class="tabbed-content">
