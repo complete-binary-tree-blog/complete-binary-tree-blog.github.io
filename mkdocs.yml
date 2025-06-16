@@ -1,5 +1,5 @@
 site_name: 蒟蒻二叉树的文章 # 网站名称
-site_url: https://comlete-binary-tree-blog.github.io/ # 网站地址
+site_url: https://complete-binary-tree-blog.github.io/ # 网站地址
 use_directory_urls: true # 直接使用 URL
 repo_url: https://github.com/complete-binary-tree-blog/complete-binary-tree-blog.github.io # 仓库地址
 repo_name: comlete-binary-tree-blog.github.io # 仓库名称
